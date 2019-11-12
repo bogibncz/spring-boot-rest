@@ -1,5 +1,7 @@
 package com.controllers;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,9 +13,11 @@ import com.beans.StudentRegistrationReply;
 @RestController
 public class StudentRegistrationController {
 	
+	private static final Logger logger = LogManager.getLogger(StudentRegistrationController.class);
+	
 	@PostMapping("/register/student")
 	public StudentRegistrationReply registerStudent(@RequestBody Student student) {
-		System.out.println("In registerStudent");
+		logger.info("In registerStudent");
 
 		StudentRegistrationReply stdregreply = new StudentRegistrationReply();
 		StudentRegistration.getInstance().add(student);
